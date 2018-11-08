@@ -32,13 +32,13 @@ namespace AdminSign.Controllers
         {
         }
 
-        // PUT api/values/5
+        // PUT api/values/10
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE api/values/10
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

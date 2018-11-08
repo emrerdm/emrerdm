@@ -14,17 +14,25 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
- 
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
- 
 using System.IO;
- 
 using Microsoft.Extensions.FileProviders;
+
 namespace AdminSign
 {
     public class Startup
     {
+        public IConfigurationRoot ConfigAppSettings { get; set; }
+
+        public Startup(IHostingEnvironment env)
+        {
+            ConfigAppSettings = new ConfigurationBuilder()
+                            .SetBasePath(env.ContentRootPath)
+                            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                            .Build();
+               
+        }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -41,13 +49,13 @@ namespace AdminSign
                 ValidateIssuer = true,
                 ValidateAudience = true,
                 ValidateLifetime = true,
-                ValidIssuer =" ",
-                ValidAudience = " ",
+                ValidIssuer = ConfigAppSettings["JWT:issuer"],
+                ValidAudience = ConfigAppSettings["JWT:audience"],
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
-                .GetBytes("testtesttest"))
+                .GetBytes(ConfigAppSettings["JWT:key"]))
 
             };
-            //Add JWT Authentication
+             
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(jwtconfig => {
                     jwtconfig.TokenValidationParameters = tokenParams;

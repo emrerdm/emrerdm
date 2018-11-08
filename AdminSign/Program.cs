@@ -16,23 +16,30 @@ namespace AdminSign
     {
         public static void Main(string[] args)
         {
-            
-                var host = BuildWebHost(args);
+            var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
 
-                host.Run();
+     
+           
+            .Build();
+
+            BuildWebHost(args, configuration).Run();
+            //var host = BuildWebHost(args);
+
+            //    host.Run();
             }
 
             // Tools will use this to get application services
-            public static IWebHost BuildWebHost(string[] args) =>
+            public static IWebHost BuildWebHost(string[] args, IConfiguration config) =>
                 new WebHostBuilder()
                     .UseKestrel()
                     .UseContentRoot(Directory.GetCurrentDirectory())
                     .UseIISIntegration()
                     .UseStartup<Startup>()
                     .Build();
-
-             
-        }
+       
+    }
 
         
     }
