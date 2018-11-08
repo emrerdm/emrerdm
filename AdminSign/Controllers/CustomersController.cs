@@ -21,7 +21,7 @@ namespace AdminSign.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Customer.ToListAsync());
+            return View(await _context.Customers.ToListAsync());
         }
 
         // GET: Customers/Details/5
@@ -32,7 +32,7 @@ namespace AdminSign.Controllers
                 return NotFound();
             }
 
-            var customers = await _context.Customer
+            var customers = await _context.Customers
                 .FirstOrDefaultAsync(m => m.CustomerID == id);
             if (customers == null)
             {
@@ -72,7 +72,7 @@ namespace AdminSign.Controllers
                 return NotFound();
             }
 
-            var customers = await _context.Customer.FindAsync(id);
+            var customers = await _context.Customers.FindAsync(id);
             if (customers == null)
             {
                 return NotFound();
@@ -123,7 +123,7 @@ namespace AdminSign.Controllers
                 return NotFound();
             }
 
-            var customers = await _context.Customer
+            var customers = await _context.Customers
                 .FirstOrDefaultAsync(m => m.CustomerID == id);
             if (customers == null)
             {
@@ -138,15 +138,15 @@ namespace AdminSign.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var customers = await _context.Customer.FindAsync(id);
-            _context.Customer.Remove(customers);
+            var customers = await _context.Customers.FindAsync(id);
+            _context.Customers.Remove(customers);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CustomersExists(string id)
         {
-            return _context.Customer.Any(e => e.CustomerID == id);
+            return _context.Customers.Any(e => e.CustomerID == id);
         }
     }
 }

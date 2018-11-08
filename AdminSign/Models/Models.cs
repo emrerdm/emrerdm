@@ -16,7 +16,7 @@ namespace AdminSign.Models
         }
 
         public DbSet<Categories> Categories { get; set; }
-        public DbSet<Customers> Customer { get; set; }
+        public DbSet<Customers> Customers { get; set; }
     }
 
     public class Categories
