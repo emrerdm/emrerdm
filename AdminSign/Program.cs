@@ -31,28 +31,7 @@ namespace AdminSign
                     .UseStartup<Startup>()
                     .Build();
 
-            //using (var ctx = new Context())
-            //{
-            //    var stud = new Category() { CategoryName = "Bill" };
-
-            //    ctx.Category.Add(stud);
-            //    ctx.SaveChanges();
-            //}
-            //CreateWebHostBuilder(args).Build().Run();
-            //Context Data = new Context();
-            // Data.Category.Add(new Category
-            // {
-            //     CategoryName = "Test1",
-            //     Description = "Test2",
-            //     Picture="Test3"
-            // });
-            //Data.SaveChanges();
-            //Context Veri = new Context();
-            //Category ornek = Veri.Category.FirstOrDefault(o => o.CategoryID == 7);
-            //ornek.CategoryName = "Test1";
-            //ornek.Description = "Test2";
-            //ornek.Picture = "Test3";
-            //Veri.SaveChanges();
+             
         }
 
         
